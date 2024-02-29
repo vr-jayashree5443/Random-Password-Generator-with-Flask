@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Password Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"] {
+            padding: 5px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .error-message {
+            color: red;
+        }
+        .generated-password {
+            margin-top: 20px;
+            font-size: 18px;
+            background-color: #f7f7f7;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Password Generator</h1>
+    <form method="post">
+        <label for="length">Password Length:</label>
+        <input type="text" id="length" name="length" value="{{ request.form['length'] if request.method == 'POST' else '' }}" />
+        <input type="submit" value="Generate" />
+    </form>
+    {% if error_message %}
+        <p class="error-message">{{ error_message }}</p>
+    {% endif %}
+    {% if password %}
+        <div class="generated-password">
+            <h2>Generated Password:</h2>
+            <p>{{ password }}</p>
+        </div>
+    {% endif %}
+</body>
+</html>
